@@ -13,6 +13,28 @@ class CarsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CarController carController = Get.put(CarController());
+    deleteConfirmationDialog(int carId) => showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Are you sure?"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () {
+                  carController.deleteCar(carId);
+                  Get.back();
+                },
+                child: Text("Yes"),
+              ),
+            ],
+          );
+        });
     openAddCarDialog() => showDialog(
           context: context,
           builder: (context) {
@@ -75,7 +97,12 @@ class CarsScreen extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(Spacing.medium),
+            padding: const EdgeInsets.only(
+              right: Spacing.medium,
+              left: Spacing.medium,
+              top: Spacing.medium,
+              bottom: Spacing.bottomFloatingActionButton,
+            ),
             child: carController.carState.cars.isNotEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +115,7 @@ class CarsScreen extends StatelessWidget {
                             return CarItemComponent(
                               car: car,
                               onPressed: () {
-                                carController.deleteCar(car.id);
+                                deleteConfirmationDialog(car.id);
                               },
                             );
                           },
