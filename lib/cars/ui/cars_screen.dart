@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:inforce_test_task/cars/ui/car_item.dart';
+import 'package:get/get.dart';
+import 'package:inforce_test_task/cars/controller/car_controller.dart';
+import 'package:inforce_test_task/cars/ui/car_item_component.dart';
 import 'package:inforce_test_task/theme/spacing.dart';
 
 class CarsScreen extends StatelessWidget {
@@ -7,64 +9,36 @@ class CarsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(Spacing.medium),
-        child: FloatingActionButton(
-          elevation: 0,
-          child: const Icon(Icons.add),
-          onPressed: () {},
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
+    final CarController carController = Get.put(CarController());
+    return Obx(
+      () => Scaffold(
+        floatingActionButton: Padding(
           padding: const EdgeInsets.all(Spacing.medium),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: cars.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var car = cars[index];
-                    return CarItem(car: car);
-                  },
+          child: FloatingActionButton(
+            elevation: 0,
+            child: const Icon(Icons.add),
+            onPressed: () {},
+          ),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(Spacing.medium),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: carController.carState.cars.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var car = carController.carState.cars[index];
+                      return CarItemComponent(car: car);
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-// Hardcode list of cars
-List<Car> cars = [
-  Car(make: "BMW"),
-  Car(make: "Mercedes"),
-  Car(make: "Toyota"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-  Car(make: "Audi"),
-];
-
-class Car {
-  final String make;
-
-  Car({required this.make});
 }

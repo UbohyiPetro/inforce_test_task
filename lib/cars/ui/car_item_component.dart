@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inforce_test_task/cars/ui/cars_screen.dart';
-
 import '../../theme/spacing.dart';
+import '../model/car_item.dart';
 
-class CarItem extends StatelessWidget {
-  final Car car;
+class CarItemComponent extends StatelessWidget {
+  final CarItem car;
 
-  const CarItem({super.key, required this.car});
+  const CarItemComponent({super.key, required this.car});
 
   @override
   Widget build(BuildContext context) {
