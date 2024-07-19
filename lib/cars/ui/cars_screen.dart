@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inforce_test_task/cars/ui/car_item.dart';
 
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
@@ -24,10 +25,7 @@ class CarsScreen extends StatelessWidget {
                   itemCount: cars.length,
                   itemBuilder: (BuildContext context, int index) {
                     var car = cars[index];
-                    return Text(
-                      car.make,
-                      textAlign: TextAlign.center,
-                    );
+                    return CarItem(car: car);
                   },
                 ),
               ),
@@ -44,6 +42,23 @@ List<Car> cars = [
   Car(make: "BMW"),
   Car(make: "Mercedes"),
   Car(make: "Toyota"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
+  Car(make: "Audi"),
   Car(make: "Audi"),
 ];
 
