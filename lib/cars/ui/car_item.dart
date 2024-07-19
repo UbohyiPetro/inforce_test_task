@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inforce_test_task/cars/ui/cars_screen.dart';
 
+import '../../theme/spacing.dart';
+
 class CarItem extends StatelessWidget {
   final Car car;
 
@@ -11,10 +13,10 @@ class CarItem extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(Spacing.small),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(Spacing.medium),
         child: Row(
           children: [
             Text(

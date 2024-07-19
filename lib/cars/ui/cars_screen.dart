@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inforce_test_task/cars/ui/car_item.dart';
+import 'package:inforce_test_task/theme/spacing.dart';
 
 class CarsScreen extends StatelessWidget {
   const CarsScreen({super.key});
@@ -8,7 +9,7 @@ class CarsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(Spacing.medium),
         child: FloatingActionButton(
           elevation: 0,
           child: const Icon(Icons.add),
@@ -17,7 +18,7 @@ class CarsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(Spacing.medium),
           child: Column(
             children: [
               Expanded(
