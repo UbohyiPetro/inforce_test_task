@@ -44,16 +44,28 @@ class CarsScreen extends StatelessWidget {
             return Obx(
               () => AlertDialog(
                 title: const Text("Add Car"),
-                content: TextField(
-                  controller: addCarState.carMakeController,
-                  decoration: addCarState.emptyMakeError.value
-                      ? const InputDecoration(
-                          hintText: "Enter car make",
-                          errorText: "Field is empty",
-                        )
-                      : const InputDecoration(
-                          hintText: "Enter car make",
-                        ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: addCarState.carMakeController,
+                      decoration: addCarState.emptyMakeError.value
+                          ? const InputDecoration(
+                              hintText: "Enter car name",
+                              errorText: "Field is empty",
+                            )
+                          : const InputDecoration(
+                              hintText: "Enter car make",
+                            ),
+                    ),
+                    TextField(
+                      controller: addCarState.carPriceController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: "Enter car price",
+                      ),
+                    ),
+                  ],
                 ),
                 actions: [
                   TextButton(
@@ -65,13 +77,16 @@ class CarsScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      if (addCarState.carMakeControllerIsEmpty()) {
+                      if (addCarState.addCarTextFieldsIsEmpty()) {
                         addCarState.showEmptyMakeError();
                         return;
                       }
                       CarLocal carLocal = CarLocal(
                         id: DateTime.now().second,
                         make: addCarState.carMakeController.text,
+                        price:
+                            int.tryParse(addCarState.carPriceController.text) ??
+                                0,
                       );
                       addCarController.addCar(carLocal.toCarItem());
                       Get.back();

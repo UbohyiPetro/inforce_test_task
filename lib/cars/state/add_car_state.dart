@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 class AddCarState {
   final carMakeController = TextEditingController();
   final RxBool emptyMakeError = RxBool(false);
+  final carPriceController = TextEditingController();
 
-  bool carMakeControllerIsEmpty() => carMakeController.text.isEmpty;
+  bool addCarTextFieldsIsEmpty() => carMakeController.text.isEmpty;
 
   void showEmptyMakeError() {
     emptyMakeError.value = true;

@@ -12,5 +12,6 @@ class AddCarController {
     carController.carState.cars.add(carItem);
     addCarState.hideEmptyMakeError();
     addCarState.carMakeController.text = "";
+    carController.onChangedSortOption(carController.currentSortOption.value);
   }
 }

@@ -27,14 +27,20 @@ class CarController extends GetxController {
 
   void onChangedSortOption(String sortOption) {
     currentSortOption.value = sortOption;
-    if (sortOption == sortOptions[0]) {
-      carState.cars.sort((a, b) {
-        return a.make.toLowerCase().compareTo(b.make.toLowerCase());
-      });
+    if (sortOption == 'Alphabetic') {
+      alphabeticSort();
     } else {
-      carState.cars.sort((a, b) {
-        return a.make.toLowerCase().compareTo(b.make.toLowerCase());
-      });
+      priceSort();
     }
+  }
+
+  void alphabeticSort() {
+    carState.cars.sort((a, b) {
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    });
+  }
+
+  void priceSort() {
+    carState.cars.sort((a, b) => a.price.compareTo(b.price));
   }
 }

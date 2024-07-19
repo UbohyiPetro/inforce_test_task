@@ -20,7 +20,7 @@ class CarItemComponent extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                car.make,
+                car.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

@@ -6,7 +6,8 @@ extension CarApiToCarItem on CarApi {
   CarItem toCarItem() {
     return CarItem(
       id: id,
-      make: make,
+      name: '$make $model',
+      price: price,
     );
   }
 }
@@ -15,7 +16,8 @@ extension CarLocalToCarItem on CarLocal {
   CarItem toCarItem() {
     return CarItem(
       id: id,
-      make: make,
+      name: make,
+      price: price,
     );
   }
 }
