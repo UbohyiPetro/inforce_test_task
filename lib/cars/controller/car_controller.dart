@@ -7,6 +7,8 @@ import '../state/car_state.dart';
 class CarController extends GetxController {
   final CarState carState = CarState();
   final CarRepository _carRepository = Get.find();
+  final currentSortOption = "Alphabetic".obs;
+  final List<String> sortOptions = ['Alphabetic', 'Price'];
 
   @override
   void onInit() {
@@ -21,5 +23,18 @@ class CarController extends GetxController {
 
   void deleteCar(int id) {
     carState.cars.removeWhere((car) => car.id == id);
+  }
+
+  void onChangedSortOption(String sortOption) {
+    currentSortOption.value = sortOption;
+    if (sortOption == sortOptions[0]) {
+      carState.cars.sort((a, b) {
+        return a.make.toLowerCase().compareTo(b.make.toLowerCase());
+      });
+    } else {
+      carState.cars.sort((a, b) {
+        return a.make.toLowerCase().compareTo(b.make.toLowerCase());
+      });
+    }
   }
 }

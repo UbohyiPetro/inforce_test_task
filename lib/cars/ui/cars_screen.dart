@@ -23,14 +23,14 @@ class CarsScreen extends StatelessWidget {
                 onPressed: () {
                   Get.back();
                 },
-                child: Text("Cancel"),
+                child: const Text("Cancel"),
               ),
               TextButton(
                 onPressed: () {
                   carController.deleteCar(carId);
                   Get.back();
                 },
-                child: Text("Yes"),
+                child: const Text("Yes"),
               ),
             ],
           );
@@ -107,6 +107,26 @@ class CarsScreen extends StatelessWidget {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: DropdownButton<String>(
+                          icon: const Padding(
+                            padding: EdgeInsets.all(Spacing.small),
+                            child: Icon(Icons.sort),
+                          ),
+                          value: carController.currentSortOption.value,
+                          onChanged: (Object? value) {
+                            carController.onChangedSortOption(value as String);
+                          },
+                          items: carController.sortOptions
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                       Expanded(
                         child: ListView.builder(
                           itemCount: carController.carState.cars.length,
