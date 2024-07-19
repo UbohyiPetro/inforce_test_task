@@ -24,16 +24,21 @@ class CarsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Spacing.medium),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: carController.carState.cars.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var car = carController.carState.cars[index];
-                      return CarItemComponent(car: car);
-                    },
-                  ),
-                ),
+                carController.carState.cars.isNotEmpty
+                    ? Expanded(
+                        child: ListView.builder(
+                          itemCount: carController.carState.cars.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var car = carController.carState.cars[index];
+                            return CarItemComponent(car: car);
+                          },
+                        ),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      ),
               ],
             ),
           ),
