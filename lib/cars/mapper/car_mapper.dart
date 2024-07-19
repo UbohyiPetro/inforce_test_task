@@ -5,6 +5,7 @@ import 'package:inforce_test_task/core/repository/model/car_api.dart';
 extension CarApiToCarItem on CarApi {
   CarItem toCarItem() {
     return CarItem(
+      id: id,
       make: make,
     );
   }
@@ -12,6 +13,9 @@ extension CarApiToCarItem on CarApi {
 
 extension CarLocalToCarItem on CarLocal {
   CarItem toCarItem() {
-    return CarItem(make: make);
+    return CarItem(
+      id: id,
+      make: make,
+    );
   }
 }

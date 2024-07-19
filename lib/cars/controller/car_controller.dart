@@ -15,9 +15,11 @@ class CarController extends GetxController {
   }
 
   void getCars() async {
-    var cars_api = await _carRepository.fetchCars();
-    carState.cars.value = cars_api.map((car) => car.toCarItem()).toList();
+    var carsApi = await _carRepository.fetchCars();
+    carState.cars.value = carsApi.map((car) => car.toCarItem()).toList();
   }
 
-
+  void deleteCar(int id) {
+    carState.cars.removeWhere((car) => car.id == id);
+  }
 }

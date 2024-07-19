@@ -10,5 +10,7 @@ class AddCarController {
 
   void addCar(CarItem carItem) {
     carController.carState.cars.add(carItem);
+    addCarState.hideEmptyMakeError();
+    addCarState.carMakeController.text = "";
   }
 }

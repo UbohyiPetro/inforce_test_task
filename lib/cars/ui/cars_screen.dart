@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inforce_test_task/cars/controller/add_car_controller.dart';
 import 'package:inforce_test_task/cars/controller/car_controller.dart';
-import 'package:inforce_test_task/cars/model/car_item.dart';
+import 'package:inforce_test_task/cars/mapper/car_mapper.dart';
+import 'package:inforce_test_task/cars/model/car_local.dart';
 import 'package:inforce_test_task/cars/ui/car_item_component.dart';
 import 'package:inforce_test_task/theme/spacing.dart';
 
@@ -46,10 +47,11 @@ class CarsScreen extends StatelessWidget {
                         addCarState.showEmptyMakeError();
                         return;
                       }
-                      CarItem carItem =
-                          CarItem(make: addCarState.carMakeController.text);
-                      addCarController.addCar(carItem);
-                      addCarState.hideEmptyMakeError();
+                      CarLocal carLocal = CarLocal(
+                        id: DateTime.now().second,
+                        make: addCarState.carMakeController.text,
+                      );
+                      addCarController.addCar(carLocal.toCarItem());
                       Get.back();
                     },
                     child: const Text("Save"),
@@ -83,7 +85,12 @@ class CarsScreen extends StatelessWidget {
                           itemCount: carController.carState.cars.length,
                           itemBuilder: (BuildContext context, int index) {
                             var car = carController.carState.cars[index];
-                            return CarItemComponent(car: car);
+                            return CarItemComponent(
+                              car: car,
+                              onPressed: () {
+                                carController.deleteCar(car.id);
+                              },
+                            );
                           },
                         ),
                       )

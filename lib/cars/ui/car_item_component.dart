@@ -4,8 +4,8 @@ import '../model/car_item.dart';
 
 class CarItemComponent extends StatelessWidget {
   final CarItem car;
-
-  const CarItemComponent({super.key, required this.car});
+  final VoidCallback onPressed;
+  const CarItemComponent({super.key, required this.car, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CarItemComponent extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: onPressed,
               icon: const Icon(
                 Icons.delete,
                 color: Colors.red,
