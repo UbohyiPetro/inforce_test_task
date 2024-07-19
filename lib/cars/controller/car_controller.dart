@@ -18,4 +18,6 @@ class CarController extends GetxController {
     var cars_api = await _carRepository.fetchCars();
     carState.cars.value = cars_api.map((car) => car.toCarItem()).toList();
   }
+
+
 }

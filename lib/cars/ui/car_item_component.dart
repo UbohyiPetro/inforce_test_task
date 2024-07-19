@@ -18,14 +18,17 @@ class CarItemComponent extends StatelessWidget {
         padding: const EdgeInsets.all(Spacing.medium),
         child: Row(
           children: [
-            Text(
-              car.make,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: Text(
+                car.make,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            const Spacer(),
             IconButton(
               onPressed: () {},
               icon: const Icon(
